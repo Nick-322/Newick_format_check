@@ -1,28 +1,38 @@
 # Newick_format_check
-Tool for checking the validity of a given Newick format file
+Tool for checking the validity of a given Newick format
 
-Dendrograms are a common way to visualize relationships among samples. They can be used whenever
-trying to visualize many pairwise comparisons and are commonly used in combination with heatmaps.
-Today we will be working with a dendrogram that is used to show the evolutionary history
-(phylogenetic relationships) of organisms.
-When a dendrogram is used to visualize the phylogenetic relationship between organisms, it is referred
-to as a phylogenetic tree. However, note that not all dendrograms are phylogenetic trees. Only those
-that represent a hypothesis of phylogenetic relationships among organisms.
-A common format in which dendrograms are encoded is Newick format. Newick format is simpler than
-another dendrogram format, Nexus, which offers the ability to enocde more information about the
-dendrogram. However, Newick format is able to enocde all the core information you need to draw the
-encodeded dendrogram.
-Newick format is described by one of its formulators here. I also describe it below.
-Newick has the following core format to describe a dendrogram.
+## Background info about dendrograms and Newick format
+Dendrograms are a common way to visualize relationships among samples. They can be used whenever trying to visualize many pairwise comparisons. One major example of the use of dendrograms is phylogenetic tree, which is defined as a dendrogram that visualizes the phylogenetic relationship between organisms. 
 
-If you were to write a script to validate Newick format, you would need to check the correct pairings of
-parentheses as well as the other format rules. This task is to write a script that checks whether parentheses are
-paired.
-Write a script that uses one or more functions to assess whether or not all parentheses in an input string are
-paired.
-As with question 1, the body of your script should only have a single line (except import sys) that is not
-within a function. That line should be calling a function and passing command line input as arguments.
+A common format in which dendrograms are encoded is Newick format. Newick format is able to enocde all the core information you need to draw the encodeded dendrogram.
+
+Newick has the following basic format to describe a dendrogram:
+(A,B),C;
+
+
+In a Newick tree representation, parentheses are used to enclose groups of taxa that share a common ancestor. For the sample basic format, it would look like the following in a dendrogram:
+
+    A----\
+         |----\
+    B----/     |
+               |
+    C---------/
+
+Branch lengths for each node could be encoded in our basic format as follows:
+
+(A:8,B:5),C:4;
+
+
+In this example, each node has a branch length which follows a ":" character.
+
+## newick_check.py
+In Newick format, parentheses pairing match is very important to accurately represent the hierarchical relationships of nodes within a phylogenetic tree. Missing the match leads to the misinterpretation of the relationships between nodes in a dendrogram.  
+When writing a script to validate Newick format, therefore, you would need to check the correct pairings of parentheses as well as the other format rules. 
+
+newick_check.py does a task of checking whether all the parentheses in a given Newick format are correctly paired.
 
 Synopsis: 
 
-    <script name>.py <test string>
+    newick_check.py <test string>
+
+The script should print "PAIRED" or "NOT PAIRED" to the terminal
